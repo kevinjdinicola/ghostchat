@@ -8,17 +8,36 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject
+    var globalData: GlobalDataContext;
+    
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack {
+
+            ExchangeList()
+                .sheet(isPresented: $globalData.shouldShouldIdentityWelcome, content: {
+                    IdentitySetup().interactiveDismissDisabled()
+                })
+                .onChange(of: globalData.assumed_identity) {
+                    print("welcome " + globalData.assumed_identity!.name)
+                }
+            
+            if globalData.debug_showing {
+                DebugView()
+                    .background(.regularMaterial)
+            }
         }
-        .padding()
+        
     }
 }
 
 #Preview {
-    ContentView()
+
+    let global = GlobalDataContext();
+    global.shouldShouldIdentityWelcome = false;
+    
+    return ContentView()
+        .environment(global)
 }
