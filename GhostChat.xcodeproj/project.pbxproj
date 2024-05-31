@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A3145F22C08E0A800980635 /* IdentityDetails.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3145F12C08E0A800980635 /* IdentityDetails.swift */; };
+		0A3145F42C098E5A00980635 /* BlobLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3145F32C098E5A00980635 /* BlobLoader.swift */; };
+		0A3145F62C098E7800980635 /* CircularImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3145F52C098E7800980635 /* CircularImageView.swift */; };
 		0A5ABA132BF7032E007E8601 /* Bridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5ABA122BF7032C007E8601 /* Bridge.swift */; };
 		0A5ABA152BF7E442007E8601 /* ConnectionStatusIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A5ABA142BF7E442007E8601 /* ConnectionStatusIndicator.swift */; };
 		0A8FD65B2BEE7CC300148AE5 /* GhostChatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8FD65A2BEE7CC300148AE5 /* GhostChatApp.swift */; };
@@ -35,6 +38,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A3145F12C08E0A800980635 /* IdentityDetails.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IdentityDetails.swift; sourceTree = "<group>"; };
+		0A3145F32C098E5A00980635 /* BlobLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlobLoader.swift; sourceTree = "<group>"; };
+		0A3145F52C098E7800980635 /* CircularImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularImageView.swift; sourceTree = "<group>"; };
 		0A5ABA122BF7032C007E8601 /* Bridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bridge.swift; sourceTree = "<group>"; };
 		0A5ABA142BF7E442007E8601 /* ConnectionStatusIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionStatusIndicator.swift; sourceTree = "<group>"; };
 		0A8FD6572BEE7CC300148AE5 /* GhostChat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GhostChat.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,6 +114,7 @@
 				0AE22EF52BEF3707005F56AC /* AppHostWrapper.swift */,
 				0AE22EF72BEF3DBC005F56AC /* AppDelegate.swift */,
 				0A5ABA122BF7032C007E8601 /* Bridge.swift */,
+				0A3145F32C098E5A00980635 /* BlobLoader.swift */,
 			);
 			path = GhostChat;
 			sourceTree = "<group>";
@@ -123,6 +130,7 @@
 		0A8FD66D2BEEAFC600148AE5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				0A3145F52C098E7800980635 /* CircularImageView.swift */,
 				0A8FD66E2BEEB00900148AE5 /* IdentitySetup.swift */,
 				0A8FD6702BEEB02100148AE5 /* WideButton.swift */,
 				0A8FD6722BEEB09600148AE5 /* ExchangeList.swift */,
@@ -135,6 +143,7 @@
 				0AE22EEA2BEF0495005F56AC /* ActivityView.swift */,
 				0A915F1A2BF6EFA2007FD75C /* DebugView.swift */,
 				0A5ABA142BF7E442007E8601 /* ConnectionStatusIndicator.swift */,
+				0A3145F12C08E0A800980635 /* IdentityDetails.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -234,12 +243,15 @@
 				0A8FD6732BEEB09600148AE5 /* ExchangeList.swift in Sources */,
 				0A8FD6872BEEEB4D00148AE5 /* ExchangeDetailsDataContext.swift in Sources */,
 				0A8FD6802BEED0AD00148AE5 /* QRScannerController.swift in Sources */,
+				0A3145F42C098E5A00980635 /* BlobLoader.swift in Sources */,
 				0A8FD67A2BEEB9E200148AE5 /* GlobalDataContext.swift in Sources */,
 				0AE22EEB2BEF0495005F56AC /* ActivityView.swift in Sources */,
 				0A8FD6712BEEB02100148AE5 /* WideButton.swift in Sources */,
 				0A8FD6832BEEE42C00148AE5 /* EstablishConnectionDataContext.swift in Sources */,
 				0A8FD6852BEEEB3000148AE5 /* ExchangeDetails.swift in Sources */,
 				0A8FD65D2BEE7CC300148AE5 /* ContentView.swift in Sources */,
+				0A3145F62C098E7800980635 /* CircularImageView.swift in Sources */,
+				0A3145F22C08E0A800980635 /* IdentityDetails.swift in Sources */,
 				0A8FD6892BEEF83700148AE5 /* MessageView.swift in Sources */,
 				0A5ABA152BF7E442007E8601 /* ConnectionStatusIndicator.swift in Sources */,
 				0A8FD6752BEEB0BC00148AE5 /* ExchangeRow.swift in Sources */,

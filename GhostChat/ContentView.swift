@@ -20,8 +20,8 @@ struct ContentView: View {
                 .sheet(isPresented: $globalData.shouldShouldIdentityWelcome, content: {
                     IdentitySetup().interactiveDismissDisabled()
                 })
-                .onChange(of: globalData.assumed_identity) {
-                    print("welcome " + globalData.assumed_identity!.name)
+                .onChange(of: globalData.assumedIdentity) {
+                    print("welcome " + globalData.assumedIdentity!.name)
                 }
             
             if globalData.debug_showing {

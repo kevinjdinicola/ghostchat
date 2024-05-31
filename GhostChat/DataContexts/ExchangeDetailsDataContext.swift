@@ -21,6 +21,8 @@ class ExchangeDetailsDataContext: ObservableObject, ExchangeDispatchResponder {
             self.displayName = name
         case .liveConnectionsUpdated(count: let count):
             self.connections = count
+        case .othersPicUpdated(_):
+            ()
         }
     }
     

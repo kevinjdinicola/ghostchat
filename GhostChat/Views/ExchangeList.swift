@@ -19,8 +19,11 @@ struct ExchangeList: View {
     @State
     var showingConnect: Bool = false
     
+    @State
+    var showingIdentity: Bool = false
+    
     func printId() {
-        let i = global.assumed_identity!;
+        let i = global.assumedIdentity!;
         print("you are \(i.name) at (\(i.publicKey)")
     }
     
@@ -33,7 +36,7 @@ struct ExchangeList: View {
     
     var body: some View {
         NavigationSplitView {
-            VStack {
+            VStack {    
                 if global.exchanges.isEmpty {
                     Spacer()
                     Text("No chats")
@@ -59,12 +62,19 @@ struct ExchangeList: View {
             .navigationTitle("GhostChat")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar(content: {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        print("refreshing all...")
+                        AppHostWrapper.shared.app?.globalDispatch().emitAction(action: .wakeFromSleep);
+                    } label: {
+                        Label("Identification", systemImage: "arrow.clockwise")
+                    }
+                }
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button {
-                        printId()
-                        AppHostWrapper.shared.app?.globalDispatch().emitAction(action: .createExchange);
+                        showingIdentity = true
                     } label: {
-                        Label("Identification", systemImage: "person.text.rectangle")
+                        Label("Debug", systemImage: "person.circle")
                     }
                 }
                 ToolbarItem(placement: .navigationBarLeading) {
@@ -91,6 +101,9 @@ struct ExchangeList: View {
         .sheet(isPresented: $showingConnect, content: {
             EstablishConnectionView(showingInSheet: $showingConnect)
         })
+        .sheet(isPresented: $showingIdentity, content: {
+            IdentityDetails()
+        })
         .onAppear(perform: {
             self.dispatch = AppHostWrapper.shared.app?.globalDispatch();
         })
@@ -100,7 +113,7 @@ struct ExchangeList: View {
 #Preview {
     let gdc = GlobalDataContext();
     gdc.exchanges = [
-        ExchangeListItem(id: WideId(1), label: "hi", connections: 1)
+        ExchangeListItem(id: WideId(1), label: "hi", pic: nil,  connections: 1)
     ]
 
     return ExchangeList()

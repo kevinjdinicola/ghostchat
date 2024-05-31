@@ -57,6 +57,10 @@ struct EstablishConnectionView: View {
     @State var isSharingViaFile = false
     @State private var fileURL: URL?
     
+    @StateObject
+    var picData: BlobLoader = BlobLoader();
+    
+    
     
     func generateQRCode(from string: String) -> UIImage? {
         let data = string.data(using: String.Encoding.ascii)
@@ -88,6 +92,8 @@ struct EstablishConnectionView: View {
                 VStack {
                     Text("Connect with this person?")
                         .padding(.bottom, 50).font(.title2)
+                    CircularImageView(data: picData.data, editable: false)
+                        .frame(height: 250)
                     Text(model.connectorsName ?? "unknown").font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/).bold()
                     Spacer()
                     HStack {
@@ -114,6 +120,13 @@ struct EstablishConnectionView: View {
                         }
                     }
                     .foregroundColor(.gray)
+                        Button("or paste from clipboard") {
+                        let pasteboard = UIPasteboard.general
+                        if let clipboardString = pasteboard.string {
+                            dispatch?.emitAction(action: .receivedJoinTicket(clipboardString))
+                        }
+                    }
+                    
                     
                 }
             case .showingCode:
@@ -169,13 +182,7 @@ struct EstablishConnectionView: View {
                     .scaledToFill()
                     .aspectRatio(1, contentMode: .fit)
                     .clipped()
-                    Button("or paste from clipboard") {
-                        let pasteboard = UIPasteboard.general
-                        if let clipboardString = pasteboard.string {
-                            dispatch?.emitAction(action: .receivedJoinTicket(clipboardString))
-                        }
-                    }
-                    
+ 
                     
                     Spacer()
                     WideButton(text: "Cancel") {
@@ -193,6 +200,12 @@ struct EstablishConnectionView: View {
                 dispatch?.emitAction(action: .receivedJoinTicket(scanResult))
             }
         }
+        .onChange(of: model.connectorsPicBlobHash) {
+            if let hash = model.connectorsPicBlobHash {
+                picData.setHash(hash: hash)
+                AppHostWrapper.shared.app?.blobDispatch().hydrate(bdr: picData)
+            }
+        }
         .onChange(of: model.complete) {
             self.showingInSheet = false
         }
@@ -207,7 +220,7 @@ struct EstablishConnectionView: View {
 #Preview {
     let ecdc = EstablishConnectionDataContext();
     ecdc.joinToken="asdf"
-    ecdc.mode = .scanningCode
+    ecdc.mode = .verify
     return EstablishConnectionView(showingInSheet: .constant(true), model: ecdc)
         .environmentObject(GlobalDataContext())
 }

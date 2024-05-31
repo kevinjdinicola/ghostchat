@@ -43,6 +43,8 @@ class EstablishConnectionDataContext: ObservableObject, EstablishConnectionDispa
             self.connectorsName = nil
             self.mode = .ready
             print("do something")
+        case .picLoaded(let blobHash):
+            connectorsPicBlobHash = blobHash
         }
         
     }
@@ -51,6 +53,7 @@ class EstablishConnectionDataContext: ObservableObject, EstablishConnectionDispa
     
     var joinToken: String?
     
+    var connectorsPicBlobHash: WideId?
     var connectorsName: String?
     var mode: ConnectionScreenMode = .ready
     var complete: Bool = false
